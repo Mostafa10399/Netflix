@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UpComingTableViewCell" rowHeight="145" id="KGk-i7-Jjw" customClass="UpComingTableViewCell" customModule="NetflixApp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="430" height="145"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="430" height="145"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6GF-IF-m0n">
+                        <rect key="frame" x="0.0" y="10" width="100" height="125"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="100" id="03f-nW-oI3"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qjq-7c-9wo">
+                        <rect key="frame" x="110" y="62" width="235" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M8i-c9-9dt">
+                        <rect key="frame" x="365" y="65.5" width="50" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="50" id="UJ9-RZ-fro"/>
+                        </constraints>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain"/>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="6GF-IF-m0n" secondAttribute="bottom" constant="10" id="3Js-lG-2sV"/>
+                    <constraint firstItem="M8i-c9-9dt" firstAttribute="leading" secondItem="Qjq-7c-9wo" secondAttribute="trailing" constant="20" id="RUc-0U-VG6"/>
+                    <constraint firstAttribute="trailing" secondItem="M8i-c9-9dt" secondAttribute="trailing" constant="15" id="c4O-e5-OAc"/>
+                    <constraint firstItem="6GF-IF-m0n" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="lXj-JK-nGq"/>
+                    <constraint firstItem="M8i-c9-9dt" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ldt-bT-mtZ"/>
+                    <constraint firstItem="Qjq-7c-9wo" firstAttribute="leading" secondItem="6GF-IF-m0n" secondAttribute="trailing" constant="10" id="pCf-1z-8pC"/>
+                    <constraint firstItem="Qjq-7c-9wo" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="sCs-2y-dNc"/>
+                    <constraint firstItem="6GF-IF-m0n" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="z7r-bd-BSM"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="movieName" destination="Qjq-7c-9wo" id="CIt-7W-zoo"/>
+                <outlet property="moviePoster" destination="6GF-IF-m0n" id="qpm-LA-Pna"/>
+                <outlet property="playButton" destination="M8i-c9-9dt" id="TbX-0I-X8A"/>
+            </connections>
+            <point key="canvasLocation" x="244.92753623188409" y="114.84375"/>
+        </tableViewCell>
+    </objects>
+</document>
