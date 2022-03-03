@@ -9,7 +9,7 @@ import UIKit
 import RealmSwift
 protocol CollectionTableViewCellDelegate:AnyObject
 {
-    func collectionTableViewCellDidTabCell(_ cell:CollectionTableViewCell,viewModel:TitlePreviewViewModel,movieInfo:MovieInfo)
+    func collectionTableViewCellDidTabCell(_ cell:CollectionTableViewCell,viewModel:TitlePreviewModel,movieInfo:MovieInfo)
 }
 
 class CollectionTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout{
@@ -32,61 +32,6 @@ class CollectionTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollec
         collection.dataSource = self
         contentView.backgroundColor = .systemBackground
     }
-    //MARK: - DownloadTitleAt
-//    func DownloadTitleAt(indexPath : IndexPath)
-//    {
-//        print("Downloading \(dataArray[indexPath.row].title)")
-//        let titleItem = TitleItem()
-//
-//
-//        guard let original_title = dataArray[indexPath.row].original_title ?? dataArray[indexPath.row].original_name ,
-//              let poster_path = dataArray[indexPath.row].poster_path,
-//              let vote_average = dataArray[indexPath.row].vote_average,
-//              let overview = dataArray[indexPath.row].overview,
-//              let release_date = dataArray[indexPath.row].release_date ?? dataArray[indexPath.row].first_air_date ,
-//              let vote_count = dataArray[indexPath.row].vote_count,
-//              let backdrop_path = dataArray[indexPath.row].backdrop_path,
-//              let title = dataArray[indexPath.row].title ?? dataArray[indexPath.row].name,
-//              let id = dataArray[indexPath.row].id,
-//              let popularity = dataArray[indexPath.row].popularity,
-//              let original_language = dataArray[indexPath.row].original_language
-//        else
-//        {
-//            return
-//        }
-//
-////        @objc dynamic var original_language:String = ""
-//
-//
-//        titleItem.original_title = original_title
-//        titleItem.poster_path = poster_path
-//        titleItem.vote_average = vote_average
-//        titleItem.overview = overview
-//        titleItem.release_date = release_date
-//        titleItem.vote_count = Int64(vote_count)
-//        titleItem.backdrop_path = backdrop_path
-//        titleItem.title = title
-//        titleItem.id = Int64(id)
-//        titleItem.popularity = popularity
-////        titleItem.media_type = mediaType
-//        titleItem.original_language = original_language
-//       saveData(to: titleItem)
-//
-//    }
-//    func saveData(to titleItem:TitleItem)
-//    {
-//        do {
-//            try CollectionTableViewCell.realm.write {
-//                CollectionTableViewCell.realm.add(titleItem)
-//               print("iam here")
-//               print(dataFilePath)
-//            }
-//        }
-//            catch{
-//                fatalError("error")
-//            }
-//
-//    }
     
 //MARK: - set Selected
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -124,7 +69,7 @@ class CollectionTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollec
                 {
                 case .success(let dataModel):
                     let movieInfo =  self.dataArray[indexPath.row]
-                    let x = TitlePreviewViewModel(title: title, youTubeVideo: dataModel.items[0].id, overViewTitle: overView)
+                    let x = TitlePreviewModel(title: title, youTubeVideo: dataModel.items[0].id, overViewTitle: overView)
                     self.delegate?.collectionTableViewCellDidTabCell(self, viewModel: x,movieInfo: movieInfo)
                 case .failure(let error):
                    fatalError("\(error)")
@@ -147,7 +92,6 @@ class CollectionTableViewCell: UITableViewCell,UICollectionViewDelegate,UICollec
         let config = UIContextMenuConfiguration(identifier: nil, previewProvider: nil) { _ in
             let downloadAction = UIAction(title: "Download", subtitle: nil, image: nil, identifier: nil, discoverabilityTitle: nil,  state: .off) { _ in
                 print("Download Taped")
-//                self.DownloadTitleAt(indexPath: indexPath)
                 RealmFunction.shared.downloadData(movieInfo: self.dataArray[indexPath.row])
             }
             return UIMenu(title: "", image: nil, identifier: nil, options: .displayInline, children: [downloadAction])

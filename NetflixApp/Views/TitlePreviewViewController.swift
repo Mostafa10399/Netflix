@@ -9,8 +9,9 @@ import UIKit
 import WebKit
 import RealmSwift
 class TitlePreviewViewController: UIViewController {
-    var previewModel:TitlePreviewViewModel?
+    var previewModel:TitlePreviewModel?
     var movieInfo:MovieInfo?
+    let titleViewModel = TitleViewModel()
 
     
     @IBOutlet weak var movieName: UILabel!
@@ -46,56 +47,12 @@ class TitlePreviewViewController: UIViewController {
 
     
     @IBAction func DownloadPressed(_ sender: UIButton) {
-        let titleItem = TitleItem()
-        
-        guard let movieInfo = movieInfo else {
-            return
+        if let movieInfo = movieInfo {
+            titleViewModel.DownloadPressed(movieInfo: movieInfo)
         }
 
-        guard let original_title = movieInfo.original_title ?? movieInfo.original_name ,
-              let poster_path = movieInfo.poster_path,
-              let vote_average = movieInfo.vote_average,
-              let overview = movieInfo.overview,
-              let release_date = movieInfo.release_date ?? movieInfo.first_air_date ,
-              let vote_count = movieInfo.vote_count,
-              let backdrop_path = movieInfo.backdrop_path,
-              let title = movieInfo.title ?? movieInfo.name,
-              let id = movieInfo.id,
-              let popularity = movieInfo.popularity,
-              let original_language = movieInfo.original_language
-        else
-        {
-            return
-        }
         
-
-        
-        titleItem.original_title = original_title
-        titleItem.poster_path = poster_path
-        titleItem.vote_average = vote_average
-        titleItem.overview = overview
-        titleItem.release_date = release_date
-        titleItem.vote_count = Int64(vote_count)
-        titleItem.backdrop_path = backdrop_path
-        titleItem.title = title
-        titleItem.id = Int64(id)
-        titleItem.popularity = popularity
-        titleItem.original_language = original_language
-
-        
-        saveData(titleItem:titleItem)
     }
-    func saveData( titleItem :TitleItem)
-    {
-        do{
-            try CollectionTableViewCell.realm.write({
-                CollectionTableViewCell.realm.add(titleItem)
-            })
-        }
-        catch
-        {
-            print(error)
-        }
-    }
+
     
 }

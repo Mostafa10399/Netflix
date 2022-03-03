@@ -19,14 +19,11 @@ enum Sections:Int
 }
 
 class HomeViewController: UIViewController {
+  
+    
     //MARK: - variable
-    let sectionTitles :[String] = ["Trending Movies","Trending TV","Popular","Upcoming Movies","Top Rated"]
-    var model:TitlePreviewViewModel?
-    var apiCaller = ApiCaller()
-    var randomMovie:MovieInfo?
-    let youtube = YoutubeApi()
-    var movieInfo:MovieInfo?
-    var ModelArray : [MovieInfo]?
+    let homeViewModel = HomeViewModel()
+
     //MARK: - Outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var downloadButton: UIButton!
@@ -38,90 +35,76 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
-        
         let gestur = UITapGestureRecognizer(target: self, action:#selector (headerPressed))
         headerView.addGestureRecognizer(gestur)
+        loadPopularMoviesData()
+    }
+    private func loadPopularMoviesData()
+    {
+        
+//        homeViewModel.fetchTrending {
+//            print("Movies")
+//
+//        }
+//        homeViewModel.fetchTV {
+//            print("TV shows")
+//        }
+//        homeViewModel.fetchPopular {
+//            print("popular")
+//        }
+//        homeViewModel.fetchUpComing {
+//            print("Upcoming")
+//
+//        }
+//        homeViewModel.fetchTopRated {
+//            print("toprated")
+//        }
+        self.tableView.reloadData()
+        
     }
     
     //MARK: - HeaderPressed
     @objc func headerPressed()
     {
-        guard let name = randomMovie?.title , let overView = randomMovie?.overview else
-        {
-            return
-        }
-        youtube.fetchYoutubeVideo(query: name + " tariler") { result in
-            switch result
-            {
-            case .success(let youtubeDataModel):
-                self.model = TitlePreviewViewModel(title: name , youTubeVideo:youtubeDataModel.items[0].id, overViewTitle:overView )
-                self.movieInfo = self.randomMovie
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier:"homeToInfo", sender: self)
+        homeViewModel.playButtonPressed {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier:"homeToInfo", sender: self)
 
-                }
-            case .failure(let error):
-                print(error)
             }
         }
-        
+    
 //
      
     }
    
     @IBAction func downloadButtonPressed(_ sender: UIButton) {
-
-        guard let randomMovie = randomMovie else {
-            return
-        }
-
-        RealmFunction.shared.downloadData(movieInfo: randomMovie)
+        homeViewModel.downloadButtonPressed()
         
     }
 
     @IBAction func playButtonPressed(_ sender: UIButton) {
-        guard let name = randomMovie?.title , let overView = randomMovie?.overview else
-        {
-            return
-        }
-        youtube.fetchYoutubeVideo(query: name + " tariler") { result in
-            switch result
-            {
-            case .success(let youtubeDataModel):
-                self.model = TitlePreviewViewModel(title: name , youTubeVideo:youtubeDataModel.items[0].id, overViewTitle:overView )
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier:"homeToInfo", sender: self)
+      
+        
+        homeViewModel.playButtonPressed {
+            DispatchQueue.main.async {
+                self.performSegue(withIdentifier:"homeToInfo", sender: self)
 
-                }
-            case .failure(let error):
-                print(error)
             }
         }
+        
+        
     }
     func configurePoster()
     {
-        apiCaller.fetchDataForMovies { result in
-            switch result
+        homeViewModel.configurePoster { model in
+//            self.randomMovie = movie
+            guard let url = URL(string: "https://image.tmdb.org/t/p/w500\(model.posterURL)") else
             {
-            case .success(let movieDataModel):
-                
-                if let movie = movieDataModel.results.randomElement(),let imageUrl = movie.poster_path , let title = movie.title
-                {
-                    self.randomMovie = movie
-                    let model = MovieInfoModel(title: title, posterURL: imageUrl)
-                    guard let url = URL(string: "https://image.tmdb.org/t/p/w500\(model.posterURL)") else
-                         {
-                             return
-                         }
-                    self.posterImage.sd_setImage(with: url, completed: nil)
-
-
-                }
-            case .failure(let error):
-                print(error)
+                return
             }
+            self.posterImage.sd_setImage(with: url, completed: nil)
+
         }
-   
      
      
         
@@ -149,14 +132,17 @@ extension HomeViewController:CollectionTableViewCellDelegate
 {
     
     
-    func collectionTableViewCellDidTabCell(_ cell: CollectionTableViewCell, viewModel: TitlePreviewViewModel, movieInfo: MovieInfo) {
-      model = viewModel
-      self.movieInfo=movieInfo
+    func collectionTableViewCellDidTabCell(_ cell: CollectionTableViewCell, viewModel: TitlePreviewModel, movieInfo: MovieInfo) {
         DispatchQueue.main.async {
         
             self.performSegue(withIdentifier: "homeToInfo", sender: self)
        
     }
+        homeViewModel.homeViewTableViewCellDidTabCell( viewModel: viewModel, movieInfo: movieInfo) {
+           print("delegate")
+        }
+//
+    
         
     
     
@@ -164,8 +150,8 @@ extension HomeViewController:CollectionTableViewCellDelegate
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? TitlePreviewViewController
         {
-            destination.previewModel = model
-            destination.movieInfo = movieInfo
+            destination.previewModel = self.homeViewModel.model
+            destination.movieInfo = self.homeViewModel.movieInfo
         }
     }
     
@@ -223,7 +209,7 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource
         tableView.tableHeaderView = headerView
     }
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sectionTitles.count
+        return homeViewModel.numberOfSections()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
@@ -234,57 +220,48 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource
         switch indexPath.section
         {
         case Sections.TrendingMovies.rawValue:
-            apiCaller.fetchDataForMovies { result in
-                
-                switch result
+          
+            homeViewModel.fetchTrending { movieDataModel in
+                if let moviesData = self.homeViewModel.tableView(indexPath: indexPath)
                 {
-                case .success(let movieDataModel):
-                    cell.ConfigureSection(model:movieDataModel.results)
-                case .failure(let error):
-                    print(error)
+                    cell.ConfigureSection(model: moviesData.results)
+
                 }
             }
+          
         case Sections.TrendingTv.rawValue:
-            apiCaller.fetchDataForTV { result in
-                switch result
+            homeViewModel.fetchTV { movieDataModel in
+                if let moviesData = self.homeViewModel.tableView(indexPath: indexPath)
                 {
-                case .success(let movieDataModel):
-                    cell.ConfigureSection(model:movieDataModel.results)
-                case .failure(let error):
-                    print(error)
+                    cell.ConfigureSection(model: moviesData.results)
                 }
+               
             }
+           
         case Sections.Popular.rawValue:
-            apiCaller.fetchDataForPopularMovies { result in
-                switch result
+            homeViewModel.fetchPopular { movieDataModel in
+                if let moviesData = self.homeViewModel.tableView(indexPath: indexPath)
                 {
-                case .success(let movieDataModel):
-                    cell.ConfigureSection(model:movieDataModel.results)
-                case .failure(let error):
-                    print(error)
+                    cell.ConfigureSection(model: moviesData.results)
                 }
             }
+           
         case Sections.UpComingMovies.rawValue:
-            apiCaller.fetchDataForUpComingMovies { result in
-                switch result
-                {
-                case .success(let movieDataModel):
-                    cell.ConfigureSection(model:movieDataModel.results)
-                case .failure(let error):
-                    print(error)
-                }
+            homeViewModel.fetchUpComing { movieDataModel in
+                if let moviesData = self.homeViewModel.tableView(indexPath: indexPath)
+                {  cell.ConfigureSection(model: moviesData.results)}
             }
+         
 
         case Sections.TopRated.rawValue:
-            apiCaller.fetchDataForTopRatedMovies { result in
-            switch result
-            {
-            case .success(let movieDataModel):
-                cell.ConfigureSection(model:movieDataModel.results)
-            case .failure(let error):
-                print(error)
+            homeViewModel.fetchTopRated { movieDataModel in
+                if let moviesData = self.homeViewModel.tableView(indexPath: indexPath)
+                {
+                    cell.ConfigureSection(model: moviesData.results)
+
+                }
             }
-        }
+          
         default:
             return UITableViewCell()
         }
@@ -304,13 +281,13 @@ extension HomeViewController:UITableViewDelegate,UITableViewDataSource
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 200
+        return CGFloat(homeViewModel.tableView(heightForRowAt: indexPath))
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 40
+        return CGFloat(homeViewModel.tableView(heightForHeaderInSection: section))
     }
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sectionTitles[section]
+        return homeViewModel.tableView(titleForHeaderInSection: section)
     }
    
 }

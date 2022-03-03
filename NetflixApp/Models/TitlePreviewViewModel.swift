@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct TitlePreviewViewModel
+struct TitlePreviewModel
 {
     let title:String
     let youTubeVideo:IDVideo

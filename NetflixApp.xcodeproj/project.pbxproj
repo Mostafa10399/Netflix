@@ -13,11 +13,17 @@
 		F610666A27BB115200F1F32E /* ApiCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = F610666927BB115200F1F32E /* ApiCaller.swift */; };
 		F610666C27BB178A00F1F32E /* MovieDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F610666B27BB178A00F1F32E /* MovieDataModel.swift */; };
 		F61B9D8927BEE6AB001236AB /* SearchResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F61B9D8827BEE6AB001236AB /* SearchResultViewController.swift */; };
+		F626773927CCF5BD0038DB7B /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F626773827CCF5BD0038DB7B /* SearchViewModel.swift */; };
+		F626773B27CD989F0038DB7B /* SearchResultViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F626773A27CD989F0038DB7B /* SearchResultViewModel.swift */; };
+		F626773D27CDB69F0038DB7B /* TitleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F626773C27CDB69F0038DB7B /* TitleViewModel.swift */; };
+		F626773F27CDBCAD0038DB7B /* DownloadViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F626773E27CDBCAD0038DB7B /* DownloadViewModel.swift */; };
 		F648C1CA27B74A54000D4813 /* CollectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F648C1C827B74A54000D4813 /* CollectionTableViewCell.swift */; };
 		F648C1CB27B74A54000D4813 /* CollectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F648C1C927B74A54000D4813 /* CollectionTableViewCell.xib */; };
+		F64D490F27CC40DF0000F544 /* ComingSoonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F64D490E27CC40DF0000F544 /* ComingSoonViewModel.swift */; };
 		F655CDAD27C344F00037C130 /* netflix-netflix-logo.gif in Resources */ = {isa = PBXBuildFile; fileRef = F655CDAC27C344F00037C130 /* netflix-netflix-logo.gif */; };
 		F655CDAF27C3484E0037C130 /* gifLoad.swift in Sources */ = {isa = PBXBuildFile; fileRef = F655CDAE27C3484E0037C130 /* gifLoad.swift */; };
 		F655CDB127C348BA0037C130 /* GifViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F655CDB027C348BA0037C130 /* GifViewController.swift */; };
+		F66AE58427CAF8D30077A0A2 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F66AE58327CAF8D30077A0A2 /* HomeViewModel.swift */; };
 		F689C9CC27C465760088844D /* MovieInfoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F689C9CB27C465760088844D /* MovieInfoModel.swift */; };
 		F689C9CE27C46E5C0088844D /* RealmFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F689C9CD27C46E5C0088844D /* RealmFunction.swift */; };
 		F69BAD4B27BFF1F2001E1111 /* YoutubeApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = F69BAD4A27BFF1F2001E1111 /* YoutubeApi.swift */; };
@@ -47,11 +53,17 @@
 		F610666927BB115200F1F32E /* ApiCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiCaller.swift; sourceTree = "<group>"; };
 		F610666B27BB178A00F1F32E /* MovieDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDataModel.swift; sourceTree = "<group>"; };
 		F61B9D8827BEE6AB001236AB /* SearchResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewController.swift; sourceTree = "<group>"; };
+		F626773827CCF5BD0038DB7B /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		F626773A27CD989F0038DB7B /* SearchResultViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultViewModel.swift; sourceTree = "<group>"; };
+		F626773C27CDB69F0038DB7B /* TitleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewModel.swift; sourceTree = "<group>"; };
+		F626773E27CDBCAD0038DB7B /* DownloadViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadViewModel.swift; sourceTree = "<group>"; };
 		F648C1C827B74A54000D4813 /* CollectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionTableViewCell.swift; sourceTree = "<group>"; };
 		F648C1C927B74A54000D4813 /* CollectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionTableViewCell.xib; sourceTree = "<group>"; };
+		F64D490E27CC40DF0000F544 /* ComingSoonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComingSoonViewModel.swift; sourceTree = "<group>"; };
 		F655CDAC27C344F00037C130 /* netflix-netflix-logo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = "netflix-netflix-logo.gif"; sourceTree = "<group>"; };
 		F655CDAE27C3484E0037C130 /* gifLoad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = gifLoad.swift; sourceTree = "<group>"; };
 		F655CDB027C348BA0037C130 /* GifViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GifViewController.swift; sourceTree = "<group>"; };
+		F66AE58327CAF8D30077A0A2 /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		F689C9CB27C465760088844D /* MovieInfoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfoModel.swift; sourceTree = "<group>"; };
 		F689C9CD27C46E5C0088844D /* RealmFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmFunction.swift; sourceTree = "<group>"; };
 		F69BAD4A27BFF1F2001E1111 /* YoutubeApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YoutubeApi.swift; sourceTree = "<group>"; };
@@ -149,8 +161,12 @@
 		F689C9CA27C45FDE0088844D /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
-				F69BAD5027C08BF2001E1111 /* TitlePreviewViewModel.swift */,
-				F689C9CB27C465760088844D /* MovieInfoModel.swift */,
+				F66AE58327CAF8D30077A0A2 /* HomeViewModel.swift */,
+				F64D490E27CC40DF0000F544 /* ComingSoonViewModel.swift */,
+				F626773827CCF5BD0038DB7B /* SearchViewModel.swift */,
+				F626773A27CD989F0038DB7B /* SearchResultViewModel.swift */,
+				F626773C27CDB69F0038DB7B /* TitleViewModel.swift */,
+				F626773E27CDBCAD0038DB7B /* DownloadViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -231,6 +247,8 @@
 		F6F843B427B7410300B08F05 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				F69BAD5027C08BF2001E1111 /* TitlePreviewViewModel.swift */,
+				F689C9CB27C465760088844D /* MovieInfoModel.swift */,
 				F610666B27BB178A00F1F32E /* MovieDataModel.swift */,
 				F69BAD4C27C006E8001E1111 /* YoutubeDataModel.swift */,
 			);
@@ -357,12 +375,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				F69BAD4B27BFF1F2001E1111 /* YoutubeApi.swift in Sources */,
+				F66AE58427CAF8D30077A0A2 /* HomeViewModel.swift in Sources */,
+				F64D490F27CC40DF0000F544 /* ComingSoonViewModel.swift in Sources */,
 				F60BD65D27C1D5A8001165AC /* TitleItem.swift in Sources */,
 				F648C1CA27B74A54000D4813 /* CollectionTableViewCell.swift in Sources */,
+				F626773F27CDBCAD0038DB7B /* DownloadViewModel.swift in Sources */,
 				F6F843A027B72A8700B08F05 /* HomeViewController.swift in Sources */,
 				F6F820C127BC266700090F04 /* UpComingTableViewCell.swift in Sources */,
 				F610666C27BB178A00F1F32E /* MovieDataModel.swift in Sources */,
+				F626773B27CD989F0038DB7B /* SearchResultViewModel.swift in Sources */,
 				F610666A27BB115200F1F32E /* ApiCaller.swift in Sources */,
+				F626773D27CDB69F0038DB7B /* TitleViewModel.swift in Sources */,
 				F655CDAF27C3484E0037C130 /* gifLoad.swift in Sources */,
 				F69BAD5127C08BF2001E1111 /* TitlePreviewViewModel.swift in Sources */,
 				F69BAD4D27C006E8001E1111 /* YoutubeDataModel.swift in Sources */,
@@ -372,6 +395,7 @@
 				F60BD65F27C1E9AD001165AC /* DownloadsViewController.swift in Sources */,
 				F6F8439E27B72A8700B08F05 /* SceneDelegate.swift in Sources */,
 				F655CDB127C348BA0037C130 /* GifViewController.swift in Sources */,
+				F626773927CCF5BD0038DB7B /* SearchViewModel.swift in Sources */,
 				F689C9CC27C465760088844D /* MovieInfoModel.swift in Sources */,
 				F69BAD4F27C038C1001E1111 /* TitlePreviewViewController.swift in Sources */,
 				F689C9CE27C46E5C0088844D /* RealmFunction.swift in Sources */,
